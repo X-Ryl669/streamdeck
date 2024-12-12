@@ -31,6 +31,7 @@ const (
 	PID_STREAMDECK_MINI     = 0x0063
 	PID_STREAMDECK_MINI_MK2 = 0x0090
 	PID_STREAMDECK_XL       = 0x006c
+	PID_STREAMDECK_XL_V2    = 0x008f
 )
 
 // Firmware command IDs.
@@ -171,7 +172,7 @@ func Devices() ([]Device, error) {
 				resetCommand:         c_REV2_RESET,
 				setBrightnessCommand: c_REV2_BRIGHTNESS,
 			}
-		case d.VendorID == VID_ELGATO && d.ProductID == PID_STREAMDECK_XL:
+		case d.VendorID == VID_ELGATO && (d.ProductID == PID_STREAMDECK_XL || d.ProductID == PID_STREAMDECK_XL_V2):
 			dev = Device{
 				ID:                   d.Path,
 				Serial:               d.Serial,
